@@ -2,26 +2,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
 using MySql.Data.MySqlClient;
-using Vidly.Models;
 
-
-namespace Vidly
+namespace Vidly.Models
 {
-    //fix these methods to work with customers
-
-
-    public class CustomerRepository
+    public class MovieRepository
     {
         public string ConnectionString { get; set; }
 
-        public CustomerRepository(string connStr)
+        public MovieRepository(string connStr)
         {
             ConnectionString = connStr;
         }
 
-        public List<Customer> GetCustomers()
+        public List<Movie> GetMovies()
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
 
@@ -30,23 +24,23 @@ namespace Vidly
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "SELECT * FROM Customers;";
+                cmd.CommandText = "SELECT * FROM Movies;";
 
-                List<Customer> customers = new List<Customer>();
+                List<Movie> movies = new List<Movie>();
 
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    Customer customer = new Customer() { Id = (int)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), Birthday = (DateTime)dr["Birthday"], PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"] };
-                    customers.Add(customer);
+                    Movie movie = new Movie() { Id = (int)dr["MovieID"], Name = dr["Name"].ToString(), Year = (int)dr["Year"], Genre = dr["Genre"].ToString() };
+                    movies.Add(movie);
                 }
 
-                return customers;
+                return movies;
             }
         }
 
-        public void AddCustomer(string newCustomer)
+        public void AddMovie(string newMovie)
         {
 
 
@@ -57,15 +51,15 @@ namespace Vidly
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO categories (Name) VALUES (newCustomer)";
-                cmd.Parameters.AddWithValue("newCustomer", newCustomer);
+                cmd.CommandText = "INSERT INTO Customers (Name) VALUES (newMovie)";
+                cmd.Parameters.AddWithValue("newMovie", newMovie);
 
                 cmd.ExecuteNonQuery();
             }
 
         }
 
-        public void DeleteCustomer(string customerToDelete)
+        public void DeleteMovie(string movieToDelete)
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
 
@@ -74,13 +68,11 @@ namespace Vidly
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Customers WHERE Name LIKE '%@customerToDelete%";
-                cmd.Parameters.AddWithValue("customerToDelete", customerToDelete);
+                cmd.CommandText = "DELETE FROM Movies WHERE Name LIKE '%@movieToDelete%";
+                cmd.Parameters.AddWithValue("movieToDelete", movieToDelete);
 
                 cmd.ExecuteNonQuery();
             }
-
         }
     }
-
 }

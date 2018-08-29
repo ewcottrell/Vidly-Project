@@ -8,7 +8,9 @@ namespace Vidly.Models
 {
     public class Movie
     {
+        List<Movie> movies = new List<Movie>();
         public int Id { get; set; }
         public string Name { get; set; }
+       
     }
 }
