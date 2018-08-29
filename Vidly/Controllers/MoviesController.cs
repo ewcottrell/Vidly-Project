@@ -12,6 +12,11 @@ namespace Vidly.Controllers
             var movies = GetMovies();
             return View(movies);
         }
+        public ActionResult New()
+        {
+            
+            return View();
+        }
 
         private IEnumerable<Movie> GetMovies()
         {

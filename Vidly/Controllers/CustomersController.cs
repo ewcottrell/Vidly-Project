@@ -25,6 +25,11 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
+        public ActionResult New()
+        {
+            return View();
+
+        }
         private ActionResult HttpNotFound()
         {
             throw new NotImplementedException();
