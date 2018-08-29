@@ -39,7 +39,7 @@ namespace Vidly
 
                 while (dr.Read())
                 {
-                    Customer customer = new Customer() { Id = (int)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), Birthday = (DateTime)dr["Birthday"], PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"] };
+                    Customer customer = new Customer() { Id = (int)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), Birthdate = dr["Birthdate"].ToString(), PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"].ToString() };
                     customers.Add(customer);
                 }
 
