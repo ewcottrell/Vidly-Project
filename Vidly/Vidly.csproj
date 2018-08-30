@@ -17,13 +17,14 @@
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Customers\" />
     <Folder Include="Views\NewCustomerSignUp\" />
-    <Folder Include="Views\LogIn\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Customers.cshtml" />
     <Content Remove="Views\SignUp\_Layout.cshtml" />
     <Content Remove="wwwroot\css\EmptyCSSFile.css" />
     <Content Remove="Views\NewCustomerSignUp\Index.cshtml" />
+    <Content Remove="Views\LogIn\Index.cshtml" />
+    <Content Remove="Views\Home\Signup.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Properties\launchSettings.json">
@@ -35,5 +36,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\css\bootstrap-lumin.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="Controllers\LogInController.cs" />
   </ItemGroup>
 </Project>

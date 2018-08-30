@@ -58,7 +58,7 @@ namespace Vidly
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO categories (Name) VALUES (newCustomer)";
+                cmd.CommandText = "INSERT INTO customers (First Name, Last Name, Birthdate, Email, Phone Number) VALUES (@newcustomer)";
                 cmd.Parameters.AddWithValue("newCustomer", newCustomer);
 
                 cmd.ExecuteNonQuery();
