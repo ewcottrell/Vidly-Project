@@ -35,3 +35,8 @@ body {
         display: none;
     }
 }
+
+/*style for add new customer button on customer page*/
+#add-new-customer {
+    margin-top: 25px;
+}

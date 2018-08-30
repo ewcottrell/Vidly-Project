@@ -25,7 +25,7 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        public ActionResult New()
+        public ActionResult Signup()
         {
             return View();
 
