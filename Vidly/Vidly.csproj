@@ -13,8 +13,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Movies\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Customers\" />
     <Folder Include="Views\NewCustomerSignUp\" />
   </ItemGroup>
