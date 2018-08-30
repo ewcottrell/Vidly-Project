@@ -1,5 +1,5 @@
 ﻿@model IEnumerable<Vidly.Models.Customer>
-    @*
+@*
     Note: I've set the model for this view to IEnumerable<Customer>
         .
         This is a simple interface implemented by the list class. Since
@@ -9,23 +9,22 @@
         iterate over the list. If in the future, we replace the List with a
         different data structure, as long as it is enumerable, our view code
         will remain unchanged.
-    *@
+*@
 
-    @{
-        ViewBag.Title = "Customers";
-        Layout = "_Layout";
-    }
-
-<button type="submit" class="btn btn-default" id="add-new-customer">Add New Customer</button>
+@{
+    ViewBag.Title = "Customers";
+    Layout = "_Layout";
+}
+<input type="submit" name="Signup" value="Add New Customer" class="btn btn-default" onclick="location.href='@Url.Action("Signup", "Customers")'" />
 
 <h2>Customers</h2>
 
-    @if (!Model.Any())
-    {
+@if (!Model.Any())
+{
     <p>We don't have any customers yet.</p>
-    }
-    else
-    {
+}
+else
+{
     <table class="table table-bordered table-hover">
         <thead>
             <tr>
@@ -35,10 +34,10 @@
         <tbody>
             @foreach (var customer in Model)
             {
-            <tr>
-                <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
-            </tr>
+                <tr>
+                    <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                </tr>
             }
         </tbody>
     </table>
-    }
+}

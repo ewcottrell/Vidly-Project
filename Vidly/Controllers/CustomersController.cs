@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Vidly.Models;
 using Microsoft.AspNetCore.Mvc;
-
-
+using MySql.Data;
 
 namespace Vidly.Controllers
 {
@@ -30,6 +29,13 @@ namespace Vidly.Controllers
             return View();
 
         }
+        //public ActionResult Add(string firstname, string lastname, string dob, string phonenumber, string email)
+        //{
+            
+        //    var repo = new CustomerRepository();
+        //    Customer customer = new Customer() {FirstName = firstname, LastName = lastname, Birthdate = }
+        //    return View();
+        //}
         private ActionResult HttpNotFound()
         {
             throw new NotImplementedException();
