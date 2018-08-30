@@ -29,6 +29,9 @@ namespace Vidly.Models
         [Required]
         [StringLength(255)]
         public string PhoneNumber { get; set; }
+        [Required]
+        [StringLength(255)]
+        public string Password { get; set; }
 
         public bool IsSubscribedToNewsletter { get; set; }
 

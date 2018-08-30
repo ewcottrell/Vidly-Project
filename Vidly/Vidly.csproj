@@ -25,6 +25,7 @@
     <Content Remove="Views\NewCustomerSignUp\Index.cshtml" />
     <Content Remove="Views\LogIn\Index.cshtml" />
     <Content Remove="Views\Home\Signup.cshtml" />
+    <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-lumin.css" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Properties\launchSettings.json">
@@ -35,7 +36,7 @@
     <None Remove="enable-migrations" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="wwwroot\css\bootstrap-lumin.css" />
+    <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-lumin.css" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\LogInController.cs" />
