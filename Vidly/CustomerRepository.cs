@@ -14,7 +14,9 @@ namespace Vidly
 
     public class CustomerRepository
     {
+
         public string ConnectionString { get; set; }
+
 
         public CustomerRepository(string connStr)
         {
@@ -46,20 +48,21 @@ namespace Vidly
             }
         }
 
-        public void AddCustomer(string newCustomer)
+        public void AddCustomer(string firstname, string lastname, string birthdate, string email, string phonenumber)
         {
-
-
+            
             MySqlConnection conn = new MySqlConnection(ConnectionString);
 
             using (conn)
             {
                 conn.Open();
-
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO customers (First Name, Last Name, Birthdate, Email, Phone Number) VALUES (@newcustomer)";
-                cmd.Parameters.AddWithValue("newCustomer", newCustomer);
-
+                cmd.CommandText = "INSERT INTO customers ('First Name', 'Last Name', Birthdate, Email, 'Phone Number') VALUES (@firstname, @lastname, @birthdate, @email, @phonenumber)";
+                cmd.Parameters.AddWithValue("firstname", firstname);
+                cmd.Parameters.AddWithValue("lastname", lastname);
+                cmd.Parameters.AddWithValue("birthdate", birthdate);
+                cmd.Parameters.AddWithValue("email", email);
+                cmd.Parameters.AddWithValue("phonenumber", phonenumber);
                 cmd.ExecuteNonQuery();
             }
 
