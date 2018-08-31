@@ -14,14 +14,13 @@ namespace Vidly.Models
         [Required]
         [StringLength(255)]
         public string Name { get; set; }
-        [Required]
-        [StringLength(255)]
+
         public string FirstName { get; set; }
         [Required]
-        [StringLength(255)]
+        [StringLength(25)]
         public string LastName { get; set; }
         [Required]
-        [StringLength(10)]
+        [StringLength(25)]
         public string Birthdate { get; set; }
         [Required]
         [StringLength(255)]

@@ -48,7 +48,7 @@ namespace Vidly
             }
         }
 
-        public void AddCustomer(string firstname, string lastname, string birthdate, string email, string phonenumber)
+        public void AddCustomer(Customer customer)
         {
             
             MySqlConnection conn = new MySqlConnection(ConnectionString);
@@ -57,12 +57,12 @@ namespace Vidly
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO customers ('First Name', 'Last Name', Birthdate, Email, 'Phone Number') VALUES (@firstname, @lastname, @birthdate, @email, @phonenumber)";
-                cmd.Parameters.AddWithValue("firstname", firstname);
-                cmd.Parameters.AddWithValue("lastname", lastname);
-                cmd.Parameters.AddWithValue("birthdate", birthdate);
-                cmd.Parameters.AddWithValue("email", email);
-                cmd.Parameters.AddWithValue("phonenumber", phonenumber);
+                cmd.CommandText = "INSERT INTO customers (FirstName, LastName, Birthdate, Email, PhoneNumber) VALUES (@firstname, @lastname, @birthdate, @email, @phonenumber)";
+                cmd.Parameters.AddWithValue("firstname", customer.FirstName);
+                cmd.Parameters.AddWithValue("lastname", customer.LastName);
+                cmd.Parameters.AddWithValue("birthdate", customer.Birthdate);
+                cmd.Parameters.AddWithValue("email", customer.Email);
+                cmd.Parameters.AddWithValue("phonenumber", customer.PhoneNumber);
                 cmd.ExecuteNonQuery();
             }
 

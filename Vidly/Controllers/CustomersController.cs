@@ -10,6 +10,7 @@ namespace Vidly.Controllers
     public class CustomersController : Controller
     {
         private CustomerRepository customerRepository;
+
         public CustomersController(CustomerRepository customerRepository)
         {
             this.customerRepository = customerRepository;
@@ -20,6 +21,7 @@ namespace Vidly.Controllers
             var customers = GetCustomers();
             return View(customers);
         }
+
         public ActionResult Details(int id)
         {
             var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
@@ -30,12 +32,16 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        public ActionResult Signup(string firstname, string lastname, string birthdate, string email, string phonenumber)
+        public ActionResult Signup()
         {
-            var repository = new CustomerRepository();
+            return View();    
+        }
+
+        public ActionResult Add(string firstname, string lastname, string birthdate, string email, string phonenumber)
+        {
             Customer customer = new Customer() { FirstName = firstname, LastName = lastname, Birthdate = birthdate, Email = email, PhoneNumber = phonenumber };
-            repository.AddCustomer(customer);
-            return Content("Customer added successfully!");
+            customerRepository.AddCustomer(customer);
+            return RedirectToAction("Index", "Customers");
 
         }
         //public ActionResult Add(string firstname, string lastname, string dob, string phonenumber, string email)
@@ -58,7 +64,6 @@ namespace Vidly.Controllers
                 new Customer { Id = 2, Name = "Mary Williams" }
             };
         }
-    
     }
 }
 

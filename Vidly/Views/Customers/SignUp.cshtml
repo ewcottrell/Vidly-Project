@@ -6,15 +6,15 @@
 }
 
 <h2>Add New Customer</h2>
-@using (Html.BeginForm("Add", "Product", "Post"))
+@using (Html.BeginForm("Add", "Customers", "Post"))
 {
     <label asp-for="FirstName" class="control-label">First Name:</label>
     <br />
-    <input type="text" name="Name" class="form-control" value="" />
+    <input type="text" name="FirstName" class="form-control" value="" />
     <br />
     <label asp-for="LastName" class="control-label">Last Name:</label>
     <br />
-    <input type="text" name="Name" class="form-control" value="" />
+    <input type="text" name="LastName" class="form-control" value="" />
     <br />
     <label asp-for="Birthdate" class="control-label">Date Of Birth:</label>
     <br />
