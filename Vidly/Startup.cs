@@ -26,6 +26,11 @@ namespace Vidly
                 string connStr = Configuration.GetConnectionString("Default");
                 return new CustomerRepository(connStr);
             });
+            services.AddTransient(x => 
+            {
+                string connStr = Configuration.GetConnectionString("Default");
+                return new MovieRepository(connStr);
+            });
         }
 
 

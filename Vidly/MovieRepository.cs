@@ -2,17 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
 using MySql.Data.MySqlClient;
+using Vidly.Models;
 
-namespace Vidly.Models
+namespace Vidly
 {
     public class MovieRepository
     {
-        public string ConnectionString { get; set; }
+        private string ConnectionString;
 
-        public MovieRepository(string connStr)
+        public MovieRepository(string connectionstring)
         {
-            ConnectionString = connStr;
+            ConnectionString = connectionstring;
         }
 
         public List<Movie> GetMovies()
@@ -40,23 +42,20 @@ namespace Vidly.Models
             }
         }
 
-        public void AddMovie(string newMovie)
+        public void AddMovie(Movie movie)
         {
-
-
             MySqlConnection conn = new MySqlConnection(ConnectionString);
-
             using (conn)
             {
                 conn.Open();
-
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO Customers (Name) VALUES (newMovie)";
-                cmd.Parameters.AddWithValue("newMovie", newMovie);
+                cmd.CommandText = "INSERT INTO Movies (Name, Year, Genre) VALUES (@Name, @Year, @Genre)";
+                cmd.Parameters.AddWithValue("Name", movie.Name);
+                cmd.Parameters.AddWithValue("Year", movie.Year);
+                cmd.Parameters.AddWithValue("Genre", movie.Genre);
 
                 cmd.ExecuteNonQuery();
             }
-
         }
 
         public void DeleteMovie(string movieToDelete)

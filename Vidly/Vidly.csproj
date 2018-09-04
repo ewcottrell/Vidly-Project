@@ -24,6 +24,7 @@
     <Content Remove="Views\LogIn\Index.cshtml" />
     <Content Remove="Views\Home\Signup.cshtml" />
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-lumin.css" />
+    <Content Remove="appsettings.Development.json" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Properties\launchSettings.json">
@@ -35,6 +36,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-lumin.css" />
+    <None Include="appsettings.Development.json" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\LogInController.cs" />

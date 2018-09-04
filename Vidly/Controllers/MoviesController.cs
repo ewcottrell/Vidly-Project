@@ -7,6 +7,12 @@ namespace Vidly.Controllers
 {
     public class MoviesController : Controller
     {
+        private MovieRepository movieRepository;
+
+        public MoviesController(MovieRepository movieRepository)
+        {
+            this.movieRepository = movieRepository;
+        }
         public ViewResult Index()
         {
             var movies = GetMovies();
@@ -29,9 +35,12 @@ namespace Vidly.Controllers
             };
         }
 
-        public ActionResult AddNewMovie()
+        public ActionResult Add(string name, int year, string genre)
         {
-            return View();
+            Movie movie = new Movie() { Name = name, Year = year, Genre = genre };
+            movieRepository.AddMovie(movie);
+            return RedirectToAction("Index", "Movies");
+
         }
 
         // GET: movies/random

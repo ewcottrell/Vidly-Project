@@ -18,8 +18,21 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            customerRepository.GetCustomers();
+            Customer.CustomerViewModels = customerRepository.GetCustomers();
             return View();
+        }
+
+        public ActionResult Signup()
+        {
+            return View();
+        }
+
+        public ActionResult Add(string firstname, string lastname, string birthdate, string email, string phonenumber)
+        {
+            CustomerViewModel customer = new CustomerViewModel() { FirstName = firstname, LastName = lastname, Birthdate = birthdate, Email = email, PhoneNumber = phonenumber };
+            customerRepository.AddCustomer(customer);
+            return RedirectToAction("Index", "Customers");
+
         }
 
         public ActionResult Details(int id)
@@ -32,32 +45,10 @@ namespace Vidly.Controllers
             return View(customer);
         }
 
-        public ActionResult Signup()
-        {
-            return View();    
-        }
-
-        public ActionResult Add(string firstname, string lastname, string birthdate, string email, string phonenumber)
-        {
-            Customer customer = new Customer() { FirstName = firstname, LastName = lastname, Birthdate = birthdate, Email = email, PhoneNumber = phonenumber };
-            customerRepository.AddCustomer(customer);
-            return RedirectToAction("Index", "Customers");
-
-        }
-       
         private ActionResult HttpNotFound()
         {
            throw new NotImplementedException();
         }
-
-        private IEnumerable<Customer> GetCustomers()
-        {
-            return new List<Customer>
-            {
-                new Customer { Id = 1, FirstName = "John Smith" },
-                new Customer { Id = 2, FirstName = "Mary Williams" }
-            };
-       }
     }
 }
 

@@ -7,7 +7,7 @@
 <h3>Add New Movie</h3>
 
 
-@using (Html.BeginForm("AddNewMovie", "Movies", "Post"))
+@using (Html.BeginForm("Add", "Movies", "Post"))
 {
 <label asp-for="Name" class="control-label">Movie Name</label>
 <br />
@@ -24,7 +24,7 @@
 <input type="text" required placeholder="Required" name="Genre" class="form-control" value="" />
 <br />
 
-<input type = "submit" name = "AddNewMovie" value = "Add Movie" class="btn btn-default" />
+<input type = "submit" name = "Add" value = "Add Movie" class="btn btn-default" />
 }
 
 

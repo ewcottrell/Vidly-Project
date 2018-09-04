@@ -14,36 +14,34 @@ namespace Vidly
 
     public class CustomerRepository
     {
+        private string ConnectionString;
 
-        public string ConnectionString { get; set; }
-
-
-        public CustomerRepository(string connStr)
+        public CustomerRepository(string connectionstring)
         {
-            ConnectionString = connStr;
+            ConnectionString = connectionstring;
         }
 
-        public List<Customer> GetCustomers()
+        public List<CustomerViewModel> GetCustomers()
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
-            using (conn)
+            using(conn)
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "SELECT * FROM Customers;";
-                List<Customer> customers = new List<Customer>();
+                List<CustomerViewModel> customers = new List<CustomerViewModel>();
 
                 MySqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    Customer customer = new Customer() { Id = (int)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), Birthdate = dr["Birthdate"].ToString(), PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"].ToString() };
+                    CustomerViewModel customer = new CustomerViewModel() { Id = (uint)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), Birthdate = dr["Birthdate"].ToString(), PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"].ToString() };
                     customers.Add(customer);
                 }
                 return customers;
             }
         }
 
-        public void AddCustomer(Customer customer)
+        public void AddCustomer(CustomerViewModel customer)
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
             using (conn)
