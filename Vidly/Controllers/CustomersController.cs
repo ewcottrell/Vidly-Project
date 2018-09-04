@@ -18,13 +18,13 @@ namespace Vidly.Controllers
 
         public ActionResult Index()
         {
-            var customers = GetCustomers();
-            return View(customers);
+            customerRepository.GetCustomers();
+            return View();
         }
 
         public ActionResult Details(int id)
         {
-            var customer = GetCustomers().SingleOrDefault(c => c.Id == id);
+            var customer = customerRepository.GetCustomers().SingleOrDefault(c => c.Id == id);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -44,26 +44,20 @@ namespace Vidly.Controllers
             return RedirectToAction("Index", "Customers");
 
         }
-        //public ActionResult Add(string firstname, string lastname, string dob, string phonenumber, string email)
-        //{
-            
-        //    var repo = new CustomerRepository();
-        //    Customer customer = new Customer() {FirstName = firstname, LastName = lastname, Birthdate = }
-        //    return View();
-        //}
+       
         private ActionResult HttpNotFound()
         {
-            throw new NotImplementedException();
+           throw new NotImplementedException();
         }
 
         private IEnumerable<Customer> GetCustomers()
         {
             return new List<Customer>
             {
-                new Customer { Id = 1, Name = "John Smith" },
-                new Customer { Id = 2, Name = "Mary Williams" }
+                new Customer { Id = 1, FirstName = "John Smith" },
+                new Customer { Id = 2, FirstName = "Mary Williams" }
             };
-        }
+       }
     }
 }
 

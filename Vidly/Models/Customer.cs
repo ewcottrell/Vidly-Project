@@ -11,10 +11,6 @@ namespace Vidly.Models
     public class Customer
     {
         public int Id { get; set; }
-        [Required]
-        [StringLength(255)]
-        public string Name { get; set; }
-
         public string FirstName { get; set; }
         [Required]
         [StringLength(25)]
@@ -28,6 +24,10 @@ namespace Vidly.Models
         [Required]
         [StringLength(255)]
         public string PhoneNumber { get; set; }
+
+        public MemborshipType MembershipType { get; set; }
+        public byte MemborshipTypeID { get; set; }
+
         [Required]
         [StringLength(255)]
         public string Password { get; set; }

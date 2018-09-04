@@ -1,24 +1,30 @@
-﻿tfz@model Vidly.Models.Movie
+﻿@model Vidly.ViewModels.MovieViewModel
 
 @{
     ViewBag.Title = "New";
     Layout = "_Layout";
 }
+<h3>Add New Movie</h3>
 
-<h3>Add New Movie:</h3>
-@*@using (Html.BeginForm())
+
+@using (Html.BeginForm("AddNewMovie", "Movies", "Post"))
 {
-    <label asp-for="Name" class="control-label">Name:</label>
-    <br />
-    <input type="text" name="Name" class="form-control" value="" />
-    <br />
-    <label asp-for="Year" class="control-label">Year:</label>
-    <br />
-    <input type="number" name="Year" class="form-control" value="" />
-    <br />
-    <label asp-for="Genre" class="control-label">Genre:</label>
-    <br />
-    <input type="text" name="Genre" class="form-control" value="" />
-    <br />
-    <input type="submit" name="Insert" value="Add Movie" class="btn btn-default" />
-}*@
+<label asp-for="Name" class="control-label">Movie Name</label>
+<br />
+<input type="text" required placeholder="Required" name="Name" class="form-control" value="" />
+<br />
+
+<label asp-for="Year" class="control-label">Year Released</label>
+<br />
+<input type="text" required placeholder="Required" name="Year" class="form-control" value="" />
+<br />
+
+<label asp-for="Genre" class="control-label">Genre</label>
+<br />
+<input type="text" required placeholder="Required" name="Genre" class="form-control" value="" />
+<br />
+
+<input type = "submit" name = "AddNewMovie" value = "Add Movie" class="btn btn-default" />
+}
+
+

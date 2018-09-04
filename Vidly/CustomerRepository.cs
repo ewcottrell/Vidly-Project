@@ -26,33 +26,26 @@ namespace Vidly
         public List<Customer> GetCustomers()
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
-
             using (conn)
             {
                 conn.Open();
-
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "SELECT * FROM Customers;";
-
                 List<Customer> customers = new List<Customer>();
 
                 MySqlDataReader dr = cmd.ExecuteReader();
-
                 while (dr.Read())
                 {
                     Customer customer = new Customer() { Id = (int)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), Birthdate = dr["Birthdate"].ToString(), PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"].ToString() };
                     customers.Add(customer);
                 }
-
                 return customers;
             }
         }
 
         public void AddCustomer(Customer customer)
         {
-            
             MySqlConnection conn = new MySqlConnection(ConnectionString);
-
             using (conn)
             {
                 conn.Open();
