@@ -9,9 +9,7 @@ using Vidly.Models;
 
 namespace Vidly
 {
-    //fix these methods to work with customers
-
-
+    
     public class CustomerRepository
     {
         private string ConnectionString;
@@ -59,7 +57,7 @@ namespace Vidly
 
         }
 
-        public void DeleteCustomer(string customerToDelete)
+        public void DeleteCustomer(uint Id)
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
 
@@ -68,8 +66,8 @@ namespace Vidly
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Customers WHERE Name LIKE '%@customerToDelete%";
-                cmd.Parameters.AddWithValue("customerToDelete", customerToDelete);
+                cmd.CommandText = "DELETE FROM Customers WHERE customerid = @id;";
+                cmd.Parameters.AddWithValue("id", Id);
 
                 cmd.ExecuteNonQuery();
             }

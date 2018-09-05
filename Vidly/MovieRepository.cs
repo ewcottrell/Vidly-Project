@@ -17,7 +17,7 @@ namespace Vidly
             ConnectionString = connectionstring;
         }
 
-        public List<Movie> GetMovies()
+        public List<MovieViewModel> GetMovies()
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
 
@@ -28,13 +28,13 @@ namespace Vidly
                 MySqlCommand cmd = conn.CreateCommand();
                 cmd.CommandText = "SELECT * FROM Movies;";
 
-                List<Movie> movies = new List<Movie>();
+                List<MovieViewModel> movies = new List<MovieViewModel>();
 
                 MySqlDataReader dr = cmd.ExecuteReader();
 
                 while (dr.Read())
                 {
-                    Movie movie = new Movie() { Id = (int)dr["MovieID"], Name = dr["Name"].ToString(), Year = (int)dr["Year"], Genre = dr["Genre"].ToString() };
+                    MovieViewModel movie = new MovieViewModel() { Id = (int)dr["MovieID"], Name = dr["Name"].ToString(), Year = (int)dr["Year"], Genre = dr["Genre"].ToString() };
                     movies.Add(movie);
                 }
 
@@ -42,7 +42,7 @@ namespace Vidly
             }
         }
 
-        public void AddMovie(Movie movie)
+        public void AddMovie(MovieViewModel movie)
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
             using (conn)
@@ -58,7 +58,7 @@ namespace Vidly
             }
         }
 
-        public void DeleteMovie(string movieToDelete)
+        public void DeleteMovie(int Id)
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
 
@@ -67,11 +67,28 @@ namespace Vidly
                 conn.Open();
 
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "DELETE FROM Movies WHERE Name LIKE '%@movieToDelete%";
-                cmd.Parameters.AddWithValue("movieToDelete", movieToDelete);
+                cmd.CommandText = "DELETE FROM Movies WHERE movieid = @id;";
+                cmd.Parameters.AddWithValue("id", Id);
 
                 cmd.ExecuteNonQuery();
             }
+
         }
-    }
+
+        //public void DeleteMovie(MovieViewModel movieviewmodel)
+        //{
+            //MySqlConnection conn = new MySqlConnection(ConnectionString);
+
+            //using (conn)
+            //{
+            //    conn.Open();
+
+            //    MySqlCommand cmd = conn.CreateCommand();
+            //    cmd.CommandText = "DELETE FROM Movies WHERE  LIKE '%@movieToDelete%";
+            //    cmd.Parameters.AddWithValue("movieToDelete", movieToDelete);
+
+            //    cmd.ExecuteNonQuery();
+            //}
+        }
+    //}
 }

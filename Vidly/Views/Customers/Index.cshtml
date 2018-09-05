@@ -1,4 +1,5 @@
-﻿@{
+﻿@model CustomerViewModel
+@{
     ViewBag.Title = "Customers";
     Layout = "_Layout";
 }
@@ -33,6 +34,7 @@
                     </td>
                     <td>
                         <form>
+                            <input asp-for="Id" class="control-label" type="hidden" value="@customer.Id" />
                             <input asp-action="Delete" type="submit" value="Delete" class="btn btn-default" />
                         </form>
                     </td>

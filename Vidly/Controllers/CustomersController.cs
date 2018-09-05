@@ -35,16 +35,13 @@ namespace Vidly.Controllers
 
         }
 
-        public ActionResult Details(int id)
+        public ActionResult Delete(uint Id)
         {
-            var customer = customerRepository.GetCustomers().SingleOrDefault(c => c.Id == id);
-            if (customer == null)
-            {
-                return HttpNotFound();
-            }
-            return View(customer);
+            customerRepository.DeleteCustomer(Id);
+            return RedirectToAction("Index", "Customers");
         }
 
+      
         private ActionResult HttpNotFound()
         {
            throw new NotImplementedException();

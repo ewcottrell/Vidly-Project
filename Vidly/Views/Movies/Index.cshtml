@@ -1,27 +1,49 @@
-﻿@model IEnumerable<Vidly.Models.Movie>
- 
+﻿@model MovieViewModel
 @{
-	ViewBag.Title = "Movies";
-	Layout = "_Layout";
+    ViewBag.Title = "Movies";
+    Layout = "_Layout";
 }
 
 
-<button type="submit" class="btn btn-default" onclick="location.href ='@Url.Action("AddNewMovie", "Movies")'">Add New Movie</button>
+<input type="submit" name="AddNewMovie" value="Add New Movie" class="btn btn-default" onclick="location.href ='@Url.Action("AddNewMovie", "Movies")'" />
 
 <h2>Movies</h2>
 
 <table class="table table-bordered table-hover">
-	<thead>
-		<tr>
-			<th>Movie</th>
-		</tr>
-	</thead>
-	<tbody>
-		@foreach (var movie in Model)
-		{
-			<tr>
-				<td>@movie.Name</td>
-			</tr>
-		}
-	</tbody>
+    <tbody>
+        <tr>
+            <th>Movie Name</th>
+            <th>Year Released</th>
+            <th>Genre</th>
+            <th>Id</th>
+            <th>Action</th>
+
+        </tr>
+        @{
+            foreach (MovieViewModel movie in Movie.MovieViewModel)
+            {
+        <tr>
+            <td>
+                @movie.Name
+            </td>
+            <td>
+                @movie.Year
+            </td>
+            <td>
+                @movie.Genre
+            </td>
+            <td>
+                @movie.Id
+            </td>
+
+            <td>
+                <form>
+                    <input asp-for="Id" class="control-label" type="hidden" value="@movie.Id" />
+                    <input asp-action="Delete" type="submit" value="Delete" class="btn btn-default" />
+                </form>
+            </td>
+        </tr>
+            }
+        }
+    </tbody>
 </table>

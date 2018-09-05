@@ -15,32 +15,26 @@ namespace Vidly.Controllers
         }
         public ViewResult Index()
         {
-            var movies = GetMovies();
-            return View(movies);
-        }
-        public ActionResult New()
-        {
-            
+            Movie.MovieViewModel = movieRepository.GetMovies();
             return View();
-        }
-
-        private IEnumerable<Movie> GetMovies()
-        {
-            return new List<Movie>
-            {
-
-
-                new Movie { Id = 1, Name = "Shrek" },
-                new Movie { Id = 2, Name = "Wall-e" }
-            };
         }
 
         public ActionResult Add(string name, int year, string genre)
         {
-            Movie movie = new Movie() { Name = name, Year = year, Genre = genre };
+            MovieViewModel movie = new MovieViewModel() { Name = name, Year = year, Genre = genre };
             movieRepository.AddMovie(movie);
             return RedirectToAction("Index", "Movies");
+        }
+       
+        public ActionResult AddNewMovie()
+        {
+            return View();
+        }
 
+        public ActionResult Delete(int Id)
+        {
+            movieRepository.DeleteMovie(Id);
+            return RedirectToAction("Index", "Movies");
         }
 
         // GET: movies/random
