@@ -12,10 +12,11 @@
 <table class="table table-bordered table-hover">
     <tbody>
         <tr>
+            <th>Id</th>
             <th>Movie Name</th>
             <th>Year Released</th>
             <th>Genre</th>
-            <th>Id</th>
+            <th>Number In Stock</th>
             <th>Action</th>
 
         </tr>
@@ -23,6 +24,9 @@
             foreach (MovieViewModel movie in Movie.MovieViewModel)
             {
         <tr>
+            <td>
+                @movie.Id
+            </td>
             <td>
                 @movie.Name
             </td>
@@ -33,12 +37,13 @@
                 @movie.Genre
             </td>
             <td>
-                @movie.Id
+                @movie.NumberInStock
             </td>
 
             <td>
                 <form>
                     <input asp-for="Id" class="control-label" type="hidden" value="@movie.Id" />
+                    <input asp-action="Update" type="submit" value="Update" class="btn btn-default" />
                     <input asp-action="Delete" type="submit" value="Delete" class="btn btn-default" />
                 </form>
             </td>

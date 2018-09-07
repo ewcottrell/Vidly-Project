@@ -18,10 +18,10 @@ namespace Vidly.Controllers
             Movie.MovieViewModel = movieRepository.GetMovies();
             return View();
         }
-
-        public ActionResult Add(string name, int year, string genre)
+        [ValidateAntiForgeryToken]
+        public ActionResult Add(string name, int year, string genre, int numberinstock)
         {
-            MovieViewModel movie = new MovieViewModel() { Name = name, Year = year, Genre = genre };
+            MovieViewModel movie = new MovieViewModel() { Name = name, Year = year, Genre = genre, NumberInStock = numberinstock};
             movieRepository.AddMovie(movie);
             return RedirectToAction("Index", "Movies");
         }

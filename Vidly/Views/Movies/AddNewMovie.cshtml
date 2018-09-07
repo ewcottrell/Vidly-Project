@@ -9,22 +9,28 @@
 
 @using (Html.BeginForm("Add", "Movies", "Post"))
 {
-<label asp-for="Name" class="control-label">Movie Name</label>
-<br />
-<input type="text" required placeholder="Required" name="Name" class="form-control" value="" />
-<br />
+    <label asp-for="Name" class="control-label">Movie Name</label>
+    <br />
+    <input type="text" required placeholder="Required" name="Name" class="form-control" value="" />
+    <br />
 
-<label asp-for="Year" class="control-label">Year Released</label>
-<br />
-<input type="text" required placeholder="Required" name="Year" class="form-control" value="" />
-<br />
+    <label asp-for="Year" class="control-label">Year Released</label>
+    <br />
+    <input type="text" required placeholder="Required" name="Year" class="form-control" value="" />
+    <br />
 
-<label asp-for="Genre" class="control-label">Genre</label>
-<br />
-<input type="text" required placeholder="Required" name="Genre" class="form-control" value="" />
-<br />
+    <label asp-for="Genre" class="control-label">Genre</label>
+    <br />
+    <input type="text" required placeholder="Required" name="Genre" class="form-control" value="" />
+    <br />
 
-<input type = "submit" name = "Add" value = "Add Movie" class="btn btn-default" />
+    <label asp-for= "NumberInStock" class="control-label">Number In Stock</label>
+    <br />
+    <input type = "text" required placeholder = "0" name="NumberInStock" class="form-control" value="" />
+    <br />
+
+    @Html.AntiForgeryToken()
+    <input type="submit" name="Add" value="Add Movie" class="btn btn-default" />
 }
 
 

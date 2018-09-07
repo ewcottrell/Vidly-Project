@@ -32,7 +32,7 @@ namespace Vidly
                 MySqlDataReader dr = cmd.ExecuteReader();
                 while (dr.Read())
                 {
-                    CustomerViewModel customer = new CustomerViewModel() { Id = (uint)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), Birthdate = dr["Birthdate"].ToString(), PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"].ToString() };
+                    CustomerViewModel customer = new CustomerViewModel() { Id = (uint)dr["CustomerID"], FirstName = dr["FirstName"].ToString(), LastName = dr["LastName"].ToString(), PhoneNumber = dr["PhoneNumber"].ToString(), Email = dr["Email"].ToString() };
                     customers.Add(customer);
                 }
                 return customers;
@@ -56,6 +56,19 @@ namespace Vidly
             }
 
         }
+        public void UpdateCustomer(uint Id)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnectionString);
+
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "UPDATE customers SET  = '' Wcustomerid = 7";
+
+            }
+
+        }
 
         public void DeleteCustomer(uint Id)
         {
@@ -73,6 +86,10 @@ namespace Vidly
             }
 
         }
+
+       
+
+
     }
 
 }

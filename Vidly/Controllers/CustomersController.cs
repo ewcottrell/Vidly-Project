@@ -5,6 +5,7 @@ using Vidly.Models;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data;
 
+
 namespace Vidly.Controllers
 {
     public class CustomersController : Controller
@@ -27,6 +28,7 @@ namespace Vidly.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         public ActionResult Add(string firstname, string lastname, string birthdate, string email, string phonenumber)
         {
             CustomerViewModel customer = new CustomerViewModel() { FirstName = firstname, LastName = lastname, Birthdate = birthdate, Email = email, PhoneNumber = phonenumber };
@@ -40,6 +42,25 @@ namespace Vidly.Controllers
             customerRepository.DeleteCustomer(Id);
             return RedirectToAction("Index", "Customers");
         }
+
+        public ActionResult Details(uint Id)
+        {
+            
+            return View();
+        }
+
+        //public ActionResult Update(uint Id)
+        //{
+        //    var customer = Customer.CustomerViewModels.SingleOrDefault(c => c.Id = Id);
+        //    var viewModel = new CustomerViewModel
+        //    {
+        //        Id = Id;
+
+                    
+        //    };
+                                   
+        //    return View("SignUp", "viewModel");
+        //}
 
       
         private ActionResult HttpNotFound()

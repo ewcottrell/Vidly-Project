@@ -15,5 +15,7 @@ namespace Vidly.Models
         public int Year { get; set; }
 
         public string Genre { get; set; }
+
+        public int NumberInStock { get; set; }
     }
 }

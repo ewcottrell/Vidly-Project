@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using System.ComponentModel.DataAnnotations;
-
+using System.ComponentModel;
 
 namespace Vidly.Models
 {
@@ -13,20 +13,26 @@ namespace Vidly.Models
         public uint Id { get; set; }
 
         public string FirstName { get; set; }
+
         [Required]
         [StringLength(25)]
         public string LastName { get; set; }
+
         [Required]
         [StringLength(25)]
+        [Min18yearsIfAMember]
         public string Birthdate { get; set; }
+
         [Required]
         [StringLength(255)]
         public string Email { get; set; }
+
         [Required]
         [StringLength(255)]
         public string PhoneNumber { get; set; }
 
         public MemborshipType MembershipType { get; set; }
+
         public byte MemborshipTypeID { get; set; }
 
         [Required]

@@ -1,12 +1,35 @@
-﻿@Model Vidly.Models.Customer
+﻿@model CustomerViewModel
 
 @{
-    ViewBag.Title = Model.Name;
+    
     Layout = "_Layout";
 }
-<h2>@Model.Name</h2>
+<h2>@Model.FirstName @Model.LastName</h2>
+@using (Html.BeginForm("Add", "Customers", "Post"))
+{
+<label asp-for="FirstName" class="control-label">First Name:</label>
+<br />
+<input type="text" required placeholder="Required" name="FirstName" class="form-control" value="" />
+<br />
+<label asp-for="LastName" class="control-label">Last Name:</label>
+<br />
+<input type="text" required placeholder="Required" name="LastName" class="form-control" value="" />
+<br />
+<label asp-for="Birthdate" class="control-label">Date Of Birth:</label>
+<br />
+<input type="text" required placeholder="Required" name="Birthdate" class="form-control" value="" />
+<br />
+<label asp-for="PhoneNumber" class="control-label">Phone Number:</label>
+<br />
+<input type="text" required placeholder="Required" name="PhoneNumber" class="form-control" value="" />
+<br />
+<label asp-for="Email" class="control-label">Email:</label>
+<br />
+<input type="text" required placeholder="Required" name="Email" class="form-control" value="" />
+<br />
 
-
+<input type="submit" name="Add" value="Add Customer" class="btn btn-default" />
+ }
 
 
 

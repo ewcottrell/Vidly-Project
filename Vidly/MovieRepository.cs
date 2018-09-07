@@ -34,7 +34,7 @@ namespace Vidly
 
                 while (dr.Read())
                 {
-                    MovieViewModel movie = new MovieViewModel() { Id = (int)dr["MovieID"], Name = dr["Name"].ToString(), Year = (int)dr["Year"], Genre = dr["Genre"].ToString() };
+                    MovieViewModel movie = new MovieViewModel() { Id = (int)dr["MovieID"], Name = dr["Name"].ToString(), Year = (int)dr["Year"], Genre = dr["Genre"].ToString(), NumberInStock = (int)dr["NumberInStock"] };
                     movies.Add(movie);
                 }
 
@@ -49,10 +49,11 @@ namespace Vidly
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "INSERT INTO Movies (Name, Year, Genre) VALUES (@Name, @Year, @Genre)";
+                cmd.CommandText = "INSERT INTO Movies (Name, Year, Genre, NumberInStock) VALUES (@Name, @Year, @Genre, @NumberInStock)";
                 cmd.Parameters.AddWithValue("Name", movie.Name);
                 cmd.Parameters.AddWithValue("Year", movie.Year);
                 cmd.Parameters.AddWithValue("Genre", movie.Genre);
+                cmd.Parameters.AddWithValue("NumberInStock", movie.NumberInStock);
 
                 cmd.ExecuteNonQuery();
             }

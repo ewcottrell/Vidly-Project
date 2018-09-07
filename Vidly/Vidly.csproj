@@ -25,6 +25,10 @@
     <Content Remove="Views\Home\Signup.cshtml" />
     <Content Remove="wwwroot\lib\bootstrap\dist\css\bootstrap-lumin.css" />
     <Content Remove="appsettings.Development.json" />
+    <Content Remove="wwwroot\images\BlackPanther.jpg" />
+    <Content Remove="wwwroot\images\DeadPool.jpg" />
+    <Content Remove="wwwroot\images\GetOut.jpg" />
+    <Content Remove="wwwroot\images\BlackPanther2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="Properties\launchSettings.json">
@@ -37,6 +41,10 @@
   <ItemGroup>
     <None Include="wwwroot\lib\bootstrap\dist\css\bootstrap-lumin.css" />
     <None Include="appsettings.Development.json" />
+    <None Include="wwwroot\images\BlackPanther.jpg" />
+    <None Include="wwwroot\images\DeadPool.jpg" />
+    <None Include="wwwroot\images\GetOut.jpg" />
+    <None Include="wwwroot\images\BlackPanther2.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Compile Remove="Controllers\LogInController.cs" />

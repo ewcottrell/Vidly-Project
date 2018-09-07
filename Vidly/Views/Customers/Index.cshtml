@@ -24,7 +24,7 @@
             {
                 <tr>
                     <td>
-                        @customer.FirstName
+                        @Html.ActionLink(customer.FirstName, "Update", "Customers", new { id = customer.Id })
                     </td>
                     <td>
                         @customer.LastName
@@ -35,6 +35,7 @@
                     <td>
                         <form>
                             <input asp-for="Id" class="control-label" type="hidden" value="@customer.Id" />
+                            <input asp-action="Update" type="submit" value="Update" class="btn btn-default" />
                             <input asp-action="Delete" type="submit" value="Delete" class="btn btn-default" />
                         </form>
                     </td>
