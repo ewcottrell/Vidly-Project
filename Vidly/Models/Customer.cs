@@ -9,5 +9,6 @@ namespace Vidly.Models
     public static class Customer
     {
         public static List<CustomerViewModel> CustomerViewModels { get; set; }
+        public static CustomerViewModel Cust { get; set; }
     }
 }

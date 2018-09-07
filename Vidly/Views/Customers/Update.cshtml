@@ -1,0 +1,40 @@
+﻿@model Vidly.Models.CustomerViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "_Layout";
+}
+
+<h2>Update Customer</h2>
+
+
+@using (Html.BeginForm("UpdateCustomer", "Customers", "Post"))
+{
+<label asp-for="FirstName" class="control-label">First Name:</label>
+<br />
+<input type="text" placeholder="Required" name="FirstName" class="form-control" value=@Customer.Cust.FirstName />
+<br />
+<label asp-for="LastName" class="control-label">Last Name:</label>
+<br />
+<input type="text" placeholder="Required" name="LastName" class="form-control" value="@Customer.Cust.LastName" />
+<br />
+<label asp-for="Birthdate" class="control-label">Date Of Birth:</label>
+<br />
+<input type="text" placeholder="YYYY-MM-DD" name="Birthdate" class="form-control" value="@Customer.Cust.Birthdate" />
+<br />
+<label asp-for="PhoneNumber" class="control-label">Phone Number:</label>
+<br />
+<input type="text" placeholder="Required" name="PhoneNumber" class="form-control" value="@Customer.Cust.PhoneNumber" />
+<br />
+<label asp-for="Email" class="control-label">Email:</label>
+<br />
+<input type="text" placeholder="Required" name="Email" class="form-control" value="@Customer.Cust.Email" />
+<br />
+<div class="checkbox">
+    <label>
+        @Html.CheckBoxFor(m => m.IsSubscribedToNewsletter)Subscribed to Newsletter?
+    </label>
+</div>
+@Html.AntiForgeryToken()
+<input type="submit" name="UpdateCustomer" value="Update Customer" class="btn btn-default" />
+}

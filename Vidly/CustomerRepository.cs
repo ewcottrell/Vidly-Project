@@ -56,7 +56,7 @@ namespace Vidly
             }
 
         }
-        public void UpdateCustomer(uint Id)
+        public void UpdateCustomer(CustomerViewModel customer)
         {
             MySqlConnection conn = new MySqlConnection(ConnectionString);
 
@@ -64,7 +64,14 @@ namespace Vidly
             {
                 conn.Open();
                 MySqlCommand cmd = conn.CreateCommand();
-                cmd.CommandText = "UPDATE customers SET  = '' Wcustomerid = 7";
+                cmd.CommandText = "UPDATE customers SET FirstName = @firstname, LastName = @lastname, Birthdate = @birthdate, Email = @email, PhoneNumber = @phonenumber WHERE CustomerID = @id;";
+                cmd.Parameters.AddWithValue("firstname", customer.FirstName);
+                cmd.Parameters.AddWithValue("lastname", customer.LastName);
+                cmd.Parameters.AddWithValue("birthdate", customer.Birthdate);
+                cmd.Parameters.AddWithValue("email", customer.Email);
+                cmd.Parameters.AddWithValue("phonenumber", customer.PhoneNumber);
+                cmd.Parameters.AddWithValue("id", Customer.Cust.Id);
+                cmd.ExecuteNonQuery();
 
             }
 

@@ -76,20 +76,27 @@ namespace Vidly
 
         }
 
-        //public void DeleteMovie(MovieViewModel movieviewmodel)
-        //{
-            //MySqlConnection conn = new MySqlConnection(ConnectionString);
+        public void UpdateMovie(MovieViewModel movie)
+        {
+            MySqlConnection conn = new MySqlConnection(ConnectionString);
 
-            //using (conn)
-            //{
-            //    conn.Open();
+            using (conn)
+            {
+                conn.Open();
+                MySqlCommand cmd = conn.CreateCommand();
+                cmd.CommandText = "UPDATE movies SET Name = @name, Year = @year, Genre = @genre, NumberInStock = @numberinstock WHERE MovieID = @id;";
+                cmd.Parameters.AddWithValue("name", movie.Name);
+                cmd.Parameters.AddWithValue("year", movie.Year);
+                cmd.Parameters.AddWithValue("genre", movie.Genre);
+                cmd.Parameters.AddWithValue("numberinstock", movie.NumberInStock);
+                cmd.Parameters.AddWithValue("id", Movie.MovieToUpdate.Id);
+                cmd.ExecuteNonQuery();
 
-            //    MySqlCommand cmd = conn.CreateCommand();
-            //    cmd.CommandText = "DELETE FROM Movies WHERE  LIKE '%@movieToDelete%";
-            //    cmd.Parameters.AddWithValue("movieToDelete", movieToDelete);
+            }
 
-            //    cmd.ExecuteNonQuery();
-            //}
         }
-    //}
+
+
+
+    }
 }

@@ -1,0 +1,32 @@
+﻿@model Vidly.Models.MovieViewModel
+
+@{
+    ViewBag.Title = "New";
+    Layout = "_Layout";
+}
+
+<h2>Update Movie</h2>
+
+@using (Html.BeginForm("UpdateMovie", "Movies", "Post"))
+{
+<label asp-for="Name" class="control-label">Movie Name:</label>
+<br />
+<input type="text" placeholder="Required" name="Name" class="form-control" value=@Movie.MovieToUpdate.Name />
+<br />
+<label asp-for="Year" class="control-label">Year:</label>
+<br />
+<input type="text" placeholder="Required" name="Year" class="form-control" value="@Movie.MovieToUpdate.Year" />
+<br />
+<label asp-for="Genre" class="control-label">Genre:</label>
+<br />
+<input type="text" placeholder="YYYY-MM-DD" name="Genre" class="form-control" value="@Movie.MovieToUpdate.Genre" />
+<br />
+<label asp-for="NumberInStock" class="control-label">Number In Stock:</label>
+<br />
+<input type="text" placeholder="Required" name="NumberInStock" class="form-control" value="@Movie.MovieToUpdate.NumberInStock" />
+<br />
+
+
+@Html.AntiForgeryToken()
+<input type="submit" name="UpdateMovie" value="Update Movie" class="btn btn-default" />
+}

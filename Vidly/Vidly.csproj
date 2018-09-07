@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Customers\" />
-    <Folder Include="Views\NewCustomerSignUp\" />
+    <Folder Include="Views\CheckOut\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="Views\Customers.cshtml" />

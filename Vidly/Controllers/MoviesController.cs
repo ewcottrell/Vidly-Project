@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Vidly.Models;
 
@@ -34,6 +35,26 @@ namespace Vidly.Controllers
         public ActionResult Delete(int Id)
         {
             movieRepository.DeleteMovie(Id);
+            return RedirectToAction("Index", "Movies");
+        }
+
+
+        public ActionResult Update(int id)
+        {
+            foreach (MovieViewModel movie in Movie.MovieViewModel)
+            {
+                if (movie.Id == id)
+                {
+                    Movie.MovieToUpdate = movie;
+                }
+            }
+            return View();
+        }
+
+        public ActionResult UpdateMovie(string name, int year, string genre, int numberinstock)
+        {
+            MovieViewModel movie = new MovieViewModel() { Name = name, Year = year, Genre = genre, NumberInStock = numberinstock};
+            movieRepository.UpdateMovie(movie);
             return RedirectToAction("Index", "Movies");
         }
 

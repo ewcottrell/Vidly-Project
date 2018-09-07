@@ -14,9 +14,9 @@
 <table class="table table-bordered table-hover">
     <tbody>
         <tr>
+            <th>ID</th>
             <th>FirstName</th>
             <th>LastName</th>
-            <th>CustomerID</th>
             <th>Action</th>
         </tr>
         @{
@@ -24,13 +24,13 @@
             {
                 <tr>
                     <td>
+                        @customer.Id
+                    </td>
+                    <td>
                         @Html.ActionLink(customer.FirstName, "Update", "Customers", new { id = customer.Id })
                     </td>
                     <td>
                         @customer.LastName
-                    </td>
-                    <td>
-                        @customer.Id
                     </td>
                     <td>
                         <form>

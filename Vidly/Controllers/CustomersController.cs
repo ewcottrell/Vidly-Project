@@ -45,22 +45,27 @@ namespace Vidly.Controllers
 
         public ActionResult Details(uint Id)
         {
-            
             return View();
         }
 
-        //public ActionResult Update(uint Id)
-        //{
-        //    var customer = Customer.CustomerViewModels.SingleOrDefault(c => c.Id = Id);
-        //    var viewModel = new CustomerViewModel
-        //    {
-        //        Id = Id;
+        public ActionResult Update(uint id)
+        {
+            foreach (CustomerViewModel customer in Customer.CustomerViewModels)
+            {
+                if (customer.Id == id)
+                {
+                    Customer.Cust = customer;
+                }
+            }
+             return View();
+        }
 
-                    
-        //    };
-                                   
-        //    return View("SignUp", "viewModel");
-        //}
+        public ActionResult UpdateCustomer(string firstname, string lastname, string birthdate, string email, string phonenumber)
+        {
+            CustomerViewModel customer = new CustomerViewModel() { FirstName = firstname, LastName = lastname, Birthdate = birthdate, Email = email, PhoneNumber = phonenumber };
+            customerRepository.UpdateCustomer(customer);
+            return RedirectToAction("Index", "Customers");
+        }
 
       
         private ActionResult HttpNotFound()
